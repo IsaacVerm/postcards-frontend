@@ -1,0 +1,24 @@
+{
+  "name": "postcards-frontend",
+  "version": "1.0.0",
+  "description": "## Vue",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacVerm/postcards-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacVerm/postcards-frontend/issues"
+  },
+  "homepage": "https://github.com/IsaacVerm/postcards-frontend#readme"
+}
