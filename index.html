@@ -5,7 +5,13 @@
   </head>
   <body>
     <div id="app">
-      <script src="index.js"></script>
+      <button v-on:click="show = !show">Click me if you want to show or hide the list.</button>
+      <ul v-if="show">
+        <li v-for="card in cards">
+          {{ card.name }}
+        </li>
+      </ul>
+      <script src="app.js"></script>
     </div>
   </body>
 </html>
