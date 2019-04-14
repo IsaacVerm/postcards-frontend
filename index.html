@@ -49,7 +49,22 @@
       </table>
 
       <!--add-card-->
-      <p v-if="show === 'add-card'">add-card placeholder</p>
+      <div v-if="show === 'add-card'">
+        <form action="http://127.0.0.1:5000/postcard" method="post">
+          <br />
+          Fill in the cardId:<br />
+          <input type="text" name="cardId" /><br />
+          Fill in the creationDate:<br />
+          <input type="text" name="creationDate" /><br />
+          Fill in the description:<br />
+          <input type="text" name="description" /><br />
+          Fill in the name:<br />
+          <input type="text" name="name" /><br />
+          Fill in the photoUrl:<br />
+          <input type="text" name="photoUrl" /><br />
+          <input type="submit" />
+        </form>
+      </div>
 
       <script src="app.js"></script>
     </div>
