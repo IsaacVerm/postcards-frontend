@@ -4,6 +4,10 @@
 
 [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) used to edit code in browser.
 
+## Gotchas
+
+Use `methods` instead of `computed` properties in order to fetch data in the right order.
+
 ## Sources used
 
 [Making HTTP requests with axios](https://www.sitepoint.com/fetching-data-third-party-api-vue-axios/)

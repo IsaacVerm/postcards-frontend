@@ -5,12 +5,12 @@
   </head>
   <body>
     <div id="app">
-      <button v-on:click="show = !show">Click me if you want to show or hide the list.</button>
-      <ul v-if="show">
-        <li v-for="card in cards">
-          {{ card.name }}
-        </li>
-      </ul>
+      <table>
+        <tr>
+          <th v-for="header in tableHeaders">{{ header }}</th>
+        </tr>
+      </table>
+
       <script src="app.js"></script>
     </div>
   </body>
