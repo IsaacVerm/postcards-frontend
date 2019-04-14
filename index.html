@@ -3,9 +3,41 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #111;
+    }
+  </style>
   <body>
     <div id="app">
-      <table>
+      <!--navigation bar-->
+      <ul>
+        <li><a v-on:click="setShow('overview')">overview</a></li>
+        <li><a v-on:click="setShow('add-card')">add card</a></li>
+      </ul>
+
+      <!--overview-->
+      <table v-if="show === 'overview'">
         <tr>
           <th v-for="header in tableHeaders">{{ header }}</th>
         </tr>
@@ -15,6 +47,9 @@
           </td>
         </tr>
       </table>
+
+      <!--add-card-->
+      <p v-if="show === 'add-card'">add-card placeholder</p>
 
       <script src="app.js"></script>
     </div>
