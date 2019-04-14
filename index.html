@@ -9,6 +9,11 @@
         <tr>
           <th v-for="header in tableHeaders">{{ header }}</th>
         </tr>
+        <tr v-for="card in cards">
+          <td v-for="header in tableHeaders">
+            {{ card[header] }}
+          </td>
+        </tr>
       </table>
 
       <script src="app.js"></script>
