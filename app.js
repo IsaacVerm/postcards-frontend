@@ -2,9 +2,9 @@ var app = new Vue({
   el: '#app',
   data: {
     cards: null,
-    tableHeaders: null,
-    apiUrl: 'http://127.0.0.1:5000',
-    show: null,
+    cardFields: ['cardId', 'creationDate', 'description', 'name', 'photoUrl'],
+    apiUrl: 'https://postcards-backend.herokuapp.com',
+    showComponent: null,
     form: {
       cardId: '',
       creationDate: '',
@@ -12,28 +12,29 @@ var app = new Vue({
       name: '',
       photoUrl: '',
     },
-    formComplete: false,
+    formFilledIn: false,
+    formErrors: null,
   },
   methods: {
-    setCards: function(response) {
-      this.cards = response.data['cards'];
+    getCards: function() {
+      axios.get(this.apiUrl + '/postcards').then(response => {
+        this.cards = response.data['cards'];
+      });
     },
-    setTableHeaders: function(cards) {
-      this.tableHeaders = Object.keys(cards[0]); // all cards have the same headers so just pick one
+    setShowComponent: function(component) {
+      this.showComponent = component;
     },
-    setShow: function(component) {
-      this.show = component;
-    },
-    setFormComplete: function() {
+    checkFormFilledIn: function() {
       if (Object.values(this.form).includes('')) {
-        this.formComplete = false;
+        this.formFilledIn = false;
       } else {
-        this.formComplete = true;
+        this.formFilledIn = true;
       }
     },
     postPostcard: function() {
-      this.setFormComplete();
-      if (this.formComplete) {
+      this.checkFormFilledIn();
+      if (this.formFilledIn) {
+        // create form data
         var bodyFormData = new FormData();
         bodyFormData.set('cardId', this.form.cardId);
         bodyFormData.set('creationDate', this.form.creationDate);
@@ -41,14 +42,15 @@ var app = new Vue({
         bodyFormData.set('name', this.form.name);
         bodyFormData.set('photoUrl', this.form.photoUrl);
 
-        axios.post(this.apiUrl + '/postcard', bodyFormData);
+        // send post request
+        axios.post(this.apiUrl + '/postcard', bodyFormData).then(response => {
+          console.log(response.data);
+          if (response.status == 409) {
+            // show description of error if a card with the same id already exists
+            this.formErrors = response.data['errors']['description'];
+          }
+        });
       }
     },
-  },
-  created: function() {
-    axios.get(this.apiUrl + '/postcards').then(response => {
-      this.setCards(response);
-      this.setTableHeaders(this.cards);
-    });
   },
 });

@@ -32,33 +32,34 @@
     <div id="app">
       <!--navigation bar-->
       <ul>
-        <li><a v-on:click="setShow('overview')">overview</a></li>
-        <li><a v-on:click="setShow('add-card')">add card</a></li>
+        <li><a v-on:click="setShowComponent('overview'); getCards()">overview</a></li>
+        <li><a v-on:click="setShowComponent('add-card')">add card</a></li>
       </ul>
 
       <!--overview-->
-      <table v-if="show === 'overview'">
+      <table v-if="showComponent === 'overview'">
         <tr>
-          <th v-for="header in tableHeaders">{{ header }}</th>
+          <th v-for="field in cardFields">{{ field }}</th>
         </tr>
         <tr v-for="card in cards">
-          <td v-for="header in tableHeaders">
-            {{ card[header] }}
+          <td v-for="field in cardFields">
+            {{ card[field] }}
           </td>
         </tr>
       </table>
 
       <!--add-card-->
-      <div v-if="show === 'add-card'">
-        <form v-on:submit="postPostcard()">
+      <div v-if="showComponent === 'add-card'">
+        <form v-on:submit.prevent="postPostcard()">
           <input v-model="form.cardId" type="text" placeholder="Fill in cardId" />
           <input v-model="form.creationDate" type="text" placeholder="Fill in creationDate" />
           <input v-model="form.description" type="text" placeholder="Fill in description" />
           <input v-model="form.name" type="text" placeholder="Fill in name" />
-          <input v-model="form.photoUrl" type="text" placeholder="Fill in cardId" />
+          <input v-model="form.photoUrl" type="text" placeholder="Fill in photoUrl" />
           <button>Submit</button>
         </form>
-        <p v-if="!formComplete">Please fill in all fields before submitting.</p>
+        <p v-if="!formFilledIn">Please fill in all fields before submitting.</p>
+        <p v-if="formErrors">{{ formErrors }}</p>
       </div>
 
       <script src="app.js"></script>
