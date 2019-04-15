@@ -34,7 +34,14 @@ var app = new Vue({
     postPostcard: function() {
       this.setFormComplete();
       if (this.formComplete) {
-        axios.post(this.apiUrl + '/postcard', this.form);
+        var bodyFormData = new FormData();
+        bodyFormData.set('cardId', this.form.cardId);
+        bodyFormData.set('creationDate', this.form.creationDate);
+        bodyFormData.set('description', this.form.description);
+        bodyFormData.set('name', this.form.name);
+        bodyFormData.set('photoUrl', this.form.photoUrl);
+
+        axios.post(this.apiUrl + '/postcard', bodyFormData);
       }
     },
   },
