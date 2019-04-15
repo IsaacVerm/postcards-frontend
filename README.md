@@ -26,3 +26,13 @@ Use `methods` instead of `computed` properties in order to fetch data in the rig
 [How to chain axios requests](https://github.com/axios/axios/issues/708)
 
 [Work with forms in Vue](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/)
+
+## Issues
+
+### Form defined in too many places
+
+- API response
+- `form` in Vue `data`
+- fields in html template
+
+Could be more dry.

@@ -50,20 +50,15 @@
 
       <!--add-card-->
       <div v-if="show === 'add-card'">
-        <form action="http://127.0.0.1:5000/postcard" method="post">
-          <br />
-          Fill in the cardId:<br />
-          <input type="text" name="cardId" /><br />
-          Fill in the creationDate:<br />
-          <input type="text" name="creationDate" /><br />
-          Fill in the description:<br />
-          <input type="text" name="description" /><br />
-          Fill in the name:<br />
-          <input type="text" name="name" /><br />
-          Fill in the photoUrl:<br />
-          <input type="text" name="photoUrl" /><br />
-          <input type="submit" />
+        <form v-on:submit="postPostcard()">
+          <input v-model="form.cardId" type="text" placeholder="Fill in cardId" />
+          <input v-model="form.creationDate" type="text" placeholder="Fill in creationDate" />
+          <input v-model="form.description" type="text" placeholder="Fill in description" />
+          <input v-model="form.name" type="text" placeholder="Fill in name" />
+          <input v-model="form.photoUrl" type="text" placeholder="Fill in cardId" />
+          <button>Submit</button>
         </form>
+        <p v-if="!formComplete">Please fill in all fields before submitting.</p>
       </div>
 
       <script src="app.js"></script>
